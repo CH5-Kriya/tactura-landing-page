@@ -1,7 +1,7 @@
 import { ArrowDown, Camera, Cpu, Download, Layers3, LockKeyhole, Sparkles } from "lucide-react";
 import { GlowButton } from "@/components/GlowButton";
 import { BlurText } from "@/components/BlurText";
-import { ReliefVisual } from "@/components/ReliefVisual";
+import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 
@@ -16,7 +16,7 @@ export default function Home() {
     <SiteHeader />
     <section className="hero page-grid">
       <div className="hero-copy"><div className="eyebrow"><span className="eyebrow-dot" /> BUILT FOR IPAD · MADE FOR MAKERS</div><BlurText text="Turn flat ideas into physical form." /><p className="hero-sub">Tactura transforms 2D artwork into 2.5D reliefs, entirely on your iPad. From first image to printable mesh, your work stays with you.</p><div className="hero-actions"><GlowButton href="#how-it-works">See how it works</GlowButton><GlowButton href="#privacy" secondary>Read our privacy promise</GlowButton></div><div className="hero-proof"><span>◉</span><span>On-device processing</span><i /><span>No account required</span></div></div>
-      <div className="hero-art"><ReliefVisual /><div className="floating-note note-one"><span>01</span><strong>2D → 2.5D</strong><small>depth, locally inferred</small></div><div className="floating-note note-two"><span className="pulse" /> iPadOS native</div></div>
+      <div className="hero-art"><ProjectScreenshot /><div className="floating-note note-two"><span className="pulse" /> iPadOS native</div></div>
     </section>
     <section className="marquee"><span>ONE IMAGE, A NEW DIMENSION</span><span>✦</span><span>PRIVATE BY DESIGN</span><span>✦</span><span>READY TO PRINT</span><span>✦</span></section>
     <section className="intro section"><div className="section-kicker">THE IDEA</div><div className="intro-layout"><h2>Give your images<br /><span>a little more room</span> to exist.</h2><div><p className="lead">A photograph is a surface. A relief is a memory you can hold.</p><p>Tactura is a focused conversion studio for iPad — designed to help illustrators, makers, and curious people discover what their flat images can become.</p><a className="text-link" href="#how-it-works">Explore the workflow <ArrowDown size={15} /></a></div></div></section>
