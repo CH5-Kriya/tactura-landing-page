@@ -1,0 +1,7 @@
+{
+  "opencv": "802cf95aa3d42816995695bf68a86b3532f12760",
+  "opencvContrib": "6484ab27bd332762f36262bf3b3f743720f4ca1b",
+  "emscripten": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 6.0.12 (5488e0871d46d19a3209988190fa6a653126256f)",
+  "wasmBytes": 2499133,
+  "jsBytes": 35014
+}

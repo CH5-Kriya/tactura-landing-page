@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return ["/", "/contact", "/privacy", "/terms"].map((path) => ({
+  return ["/", "/demo", "/contact", "/privacy", "/terms"].map((path) => ({
     url: `https://www.tactura.app${path}`,
   }));
 }
