@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Logo } from "@/components/Logo";
+import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import PhotoDemo from "@/components/PhotoDemo";
 import "./demo.css";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function Demo() {
   return <main>
-    <header className="legal-header"><Link href="/"><Logo /></Link><Link className="back-link" href="/">← Back to Tactura</Link></header>
+    <SiteHeader />
     <section className="demo-page">
       <div className="section-kicker">A LITTLE TACTURA, IN YOUR BROWSER</div>
       <h1>Your photo.<br /><em>A new dimension.</em></h1>

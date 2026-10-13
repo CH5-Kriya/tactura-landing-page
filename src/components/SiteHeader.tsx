@@ -9,12 +9,12 @@ export function SiteHeader() {
         <Logo />
       </Link>
       <nav>
+        <Link href="/#how-it-works">How it works</Link>
+        <Link href="/#privacy">Privacy</Link>
+        <Link href="/#faq">FAQ</Link>
         <Link href="/demo">Try demo</Link>
-        <Link href="#how-it-works">How it works</Link>
-        <Link href="#privacy">Privacy</Link>
-        <Link href="#faq">FAQ</Link>
       </nav>
-      <GlowButton href="#download">Get Tactura</GlowButton>
+      <GlowButton href="/#download">Get Tactura</GlowButton>
     </header>
   );
 }
