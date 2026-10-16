@@ -14,7 +14,7 @@ export function SiteHeader() {
         <Link href="/#faq">FAQ</Link>
         <Link href="/demo">Try demo</Link>
       </nav>
-      <GlowButton href="/#download">Get Tactura</GlowButton>
+      <GlowButton href="https://testflight.apple.com/join/ZC24AgVg">Get Tactura</GlowButton>
     </header>
   );
 }

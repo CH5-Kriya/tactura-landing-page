@@ -205,7 +205,7 @@ export default function Home() {
       </section>
       <section id="download" className="download-cta">
         <div>
-          <div className="section-kicker">COMING TO THE APP STORE</div>
+          <div className="section-kicker">JOIN THE TESTFLIGHT BETA</div>
           <h2>
             Make the jump
             <br />
@@ -213,13 +213,12 @@ export default function Home() {
           </h2>
         </div>
         <div className="download-action">
-          <div className="apple-badge">
-            <span className="apple-mark">●</span>
+          <a className="apple-badge" href="https://testflight.apple.com/join/ZC24AgVg">
             <div>
-              <small>Coming soon on the</small>
-              <strong>App Store</strong>
+              <small>Join the beta on</small>
+              <strong>TestFlight ↗</strong>
             </div>
-          </div>
+          </a>
           <span>
             Have a project in mind?{" "}
             <a href="mailto:tactura.kriya@gmail.com">Say hello ↗</a>
