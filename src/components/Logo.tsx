@@ -5,7 +5,7 @@ export function Logo() {
     <div className="brand">
       <Image
         className="brand-mark"
-        src="/tactura-icon.png"
+        src="/tactura-icon-lime.png"
         alt=""
         width={22}
         height={22}
