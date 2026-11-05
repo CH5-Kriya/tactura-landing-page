@@ -25,7 +25,7 @@ const steps = [
     icon: Sparkles,
     number: "02",
     title: "Let depth emerge",
-    body: "Tactura reads the image on your iPad and turns visual cues into a sculptable depth map.",
+    body: "Tactura reads the image on your iPhone or iPad and turns visual cues into a sculptable depth map.",
   },
   {
     icon: Download,
@@ -42,12 +42,12 @@ export default function Home() {
       <section className="hero page-grid">
         <div className="hero-copy">
           <div className="eyebrow">
-            <span className="eyebrow-dot" /> BUILT FOR IPAD · MADE FOR MAKERS
+            <span className="eyebrow-dot" /> BUILT FOR IPHONE + IPAD · MADE FOR MAKERS
           </div>
           <BlurText text="Turn flat ideas into physical form." />
           <p className="hero-sub">
             Tactura transforms 2D artwork into 2.5D reliefs, entirely on your
-            iPad. From first image to printable mesh, your work stays with you.
+            iPhone or iPad. From first image to printable mesh, your work stays with you.
           </p>
           <div className="hero-actions">
             <GlowButton href="/demo">Try your own photo</GlowButton>
@@ -65,7 +65,7 @@ export default function Home() {
         <div className="hero-art">
           <ProjectScreenshot />
           <div className="floating-note note-two">
-            <span className="pulse" /> iPadOS native
+            <span className="pulse" /> iPhone + iPad
           </div>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default function Home() {
               A photograph is a surface. A relief is a memory you can hold.
             </p>
             <p>
-              Tactura is a focused conversion studio for iPad — designed to help
+              Tactura is a focused conversion studio for iPhone and iPad — designed to help
               illustrators, makers, and curious people discover what their flat
               images can become.
             </p>
@@ -137,7 +137,7 @@ export default function Home() {
           </h2>
           <p>
             Tactura has no servers, no accounts, and no networking code. The AI
-            model and the complete relief pipeline run locally on your iPad.
+            model and the complete relief pipeline run locally on your iPhone or iPad.
           </p>
           <GlowButton href="/privacy" secondary>
             Read the Privacy Policy
@@ -221,7 +221,7 @@ export default function Home() {
           </a>
           <span>
             Have a project in mind?{" "}
-            <a href="mailto:tactura.kriya@gmail.com">Say hello ↗</a>
+            <a href="mailto:contact@tactura.app">Say hello ↗</a>
           </span>
         </div>
       </section>

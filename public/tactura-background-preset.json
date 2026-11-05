@@ -1,0 +1,22 @@
+{
+  "source": "https://lumenshaders.vercel.app",
+  "preset": "Halftone",
+  "seed": 9015,
+  "travel": 0.15,
+  "loopSeconds": 7.5,
+  "colors": {
+    "A": "#D7FF73",
+    "B": "#D7FF73",
+    "C": "#929391",
+    "D": "#1A1C1B",
+    "BG": "#0C0D0D"
+  },
+  "shareUrl": "https://lumenshaders.vercel.app/#LMN1.WzMsNSw5MDE1LCJkN2ZmNzMiLCJkN2ZmNzMiLCI5MjkzOTEiLCIxYTFjMWIiLCIwYzBkMGQiLCIxNjo5IiwwLDEsMS4wMTYsMC45NTcsMC44MDMsNS42MDMsMS4wNzMsMC4yMzMsLTAuMDg5LDEuMTc1LDQ0LDIzNSwwLjAxMiwwLjQ3MSwwLjAyNCwxMTMsNjcsMC4wMTgsMC4wNzksMS4xNCwwLjE1LDcuNSwwLDIsMCwwLjYsMCwwLDAsMC41LDMsMCwwLDAsMC41LDAuNSwwLjUsMC41LDBd",
+  "export": {
+    "fps": 24,
+    "originalWidth": 1920,
+    "originalHeight": 1080,
+    "width": 1600,
+    "height": 900
+  }
+}

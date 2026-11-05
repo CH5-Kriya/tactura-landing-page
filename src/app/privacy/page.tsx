@@ -18,7 +18,7 @@ export default function PrivacyPage() {
       <article className="legal-page">
         <div className="legal-intro">
           <div className="eyebrow">
-            <span className="eyebrow-dot" /> TACTURA FOR IPADOS
+            <span className="eyebrow-dot" /> TACTURA FOR IPHONE + IPAD
           </div>
           <h1>Privacy Policy</h1>
           <p className="legal-meta">
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
               </div>
               <div>
                 <span>Are my images uploaded?</span>
-                <strong>No. They are processed on your iPad.</strong>
+                <strong>No. They are processed on your iPhone or iPad.</strong>
               </div>
               <div>
                 <span>Do you use analytics or trackers?</span>
@@ -69,12 +69,12 @@ export default function PrivacyPage() {
               every pixel of that image is from the viewer — a task called
               monocular depth estimation. Tactura uses an on-device depth model
               to estimate depth from your image. The model executes locally on
-              Apple silicon inside your iPad.
+              Apple silicon inside your iPhone or iPad.
             </p>
             <p>
               Every other stage — image preparation, depth correction, region
               segmentation, volume construction, layer blending, mesh
-              generation, and file export — is computed on your iPad using code
+              generation, and file export — is computed on your iPhone or iPad using code
               compiled into the app.
             </p>
           </section>
@@ -103,7 +103,7 @@ export default function PrivacyPage() {
             <h2>4. Information the app can access</h2>
             <h3>Camera</h3>
             <p>
-              If you choose to photograph artwork inside the app, iPadOS asks
+              If you choose to photograph artwork inside the app, iOS or iPadOS asks
               for camera permission. The still image is saved into the app’s
               private storage. Tactura does not record video, capture audio, use
               the camera in the background, or transmit any frame.
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
             <h3>Photo library</h3>
             <p>
               When you import an existing image, Tactura uses the standard
-              iPadOS photo picker and receives only the single image you select.
+              iOS or iPadOS photo picker and receives only the single image you select.
               It does not browse or enumerate the rest of your library.
             </p>
             <h3>Files, when you export</h3>
@@ -125,7 +125,7 @@ export default function PrivacyPage() {
           <section>
             <h2>5. What Tactura stores</h2>
             <p>
-              All application data lives inside Tactura’s sandbox on your iPad:
+              All application data lives inside Tactura’s sandbox on your iPhone or iPad:
               the project record, source image, and a regenerable checkpoint
               file. We hold no copy because none of this data is ever sent to
               us. Deleting a project or deleting the app removes the local data.
@@ -174,9 +174,9 @@ export default function PrivacyPage() {
                 <br />
                 <a
                   className="inline-link"
-                  href="mailto:tactura.kriya@gmail.com"
+                  href="mailto:contact@tactura.app"
                 >
-                  tactura.kriya@gmail.com
+                  contact@tactura.app
                 </a>
               </p>
               <p>

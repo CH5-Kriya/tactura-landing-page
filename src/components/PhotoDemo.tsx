@@ -119,6 +119,6 @@ export default function PhotoDemo() {
         onChange={event => setDepth(Number(event.target.value) / 100)} aria-describedby="demo-depth-help" />
       <p id="demo-depth-help">Slide to bring the surface forward.</p>
     </div>
-    <p className="demo-note">Preview only. For full refinement and export, use Tactura on iPad.</p>
+    <p className="demo-note">Preview only. For full refinement and export, use Tactura on iPhone and iPad.</p>
   </div>;
 }

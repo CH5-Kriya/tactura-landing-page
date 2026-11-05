@@ -28,13 +28,13 @@ export default function ContactPage() {
           we should build next? Send us a note and we’ll get back to you.
         </p>
         <div className="contact-options">
-          <a className="contact-option" href="mailto:tactura.kriya@gmail.com">
+          <a className="contact-option" href="mailto:contact@tactura.app">
             <span className="contact-icon">
               <Mail size={20} />
             </span>
             <span>
               <small>EMAIL</small>
-              <strong>tactura.kriya@gmail.com</strong>
+              <strong>contact@tactura.app</strong>
               <p>For support, privacy questions, and general enquiries.</p>
             </span>
             <span className="contact-arrow">↗</span>
