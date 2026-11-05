@@ -12,11 +12,32 @@
     "BG": "#0C0D0D"
   },
   "shareUrl": "https://lumenshaders.vercel.app/#LMN1.WzMsNSw5MDE1LCJkN2ZmNzMiLCJkN2ZmNzMiLCI5MjkzOTEiLCIxYTFjMWIiLCIwYzBkMGQiLCIxNjo5IiwwLDEsMS4wMTYsMC45NTcsMC44MDMsNS42MDMsMS4wNzMsMC4yMzMsLTAuMDg5LDEuMTc1LDQ0LDIzNSwwLjAxMiwwLjQ3MSwwLjAyNCwxMTMsNjcsMC4wMTgsMC4wNzksMS4xNCwwLjE1LDcuNSwwLDIsMCwwLjYsMCwwLDAsMC41LDMsMCwwLDAsMC41LDAuNSwwLjUsMC41LDBd",
-  "export": {
-    "fps": 24,
-    "originalWidth": 1920,
-    "originalHeight": 1080,
-    "width": 1600,
-    "height": 900
+  "parameters": {
+    "hue": 0,
+    "sat": 1,
+    "exposure": 1.016,
+    "contrast": 0.957,
+    "scale": 0.803,
+    "complex": 5.603,
+    "warp": 1.073,
+    "flow": 0.233,
+    "stretch": -0.089,
+    "light": 1.175,
+    "gloss": 44,
+    "lightAngle": 235,
+    "irid": 0.012,
+    "glow": 0.471,
+    "grain": 0.024,
+    "cell": 113,
+    "lines": 67,
+    "ca": 0.018,
+    "vig": 0.079,
+    "soft": 1.14
+  },
+  "renderer": {
+    "type": "WebGL2",
+    "maxFps": 24,
+    "maxEdge": 1280,
+    "upstreamShaderSha256": "a83679fde48327f0866c4d691dc15ae9d11b16ec71ebd63dca1186a9503ba7e2"
   }
 }

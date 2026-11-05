@@ -17,7 +17,6 @@ export function GlowButton({
       }
     >
       {children}
-      <span aria-hidden="true">↗</span>
     </Link>
   );
 }

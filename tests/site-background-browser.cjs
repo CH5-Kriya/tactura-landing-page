@@ -9,23 +9,28 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
     const errors = [];
     page.on('pageerror', error => errors.push(String(error)));
     await page.goto(url);
-    await page.waitForFunction(() => {
-      const v = document.querySelector('.site-background video');
-      return v && v.readyState >= 2 && !v.paused;
-    });
+    await page.waitForFunction(() => document.querySelector('.site-background canvas')?.width > 300);
+    assert.equal(await page.locator('.site-background video').count(), 0);
     assert(await page.locator('.brand-mark').first().getAttribute('src').then(src => src.includes('tactura-icon-lime.png')));
     assert.equal(await page.locator('link[rel=icon]').getAttribute('href'), '/tactura-favicon.png');
     assert.equal(await page.locator('link[rel=apple-touch-icon]').getAttribute('href'), '/tactura-apple-icon.png');
-    assert(await page.locator('.site-background video').evaluate(v => v.muted && v.loop && v.playsInline));
+    await page.waitForFunction(() => {
+      const last = [...document.querySelectorAll('.blur-text span')].at(-1);
+      return last && getComputedStyle(last).opacity === '1';
+    });
+    const canvas = page.locator('.site-background canvas');
     await page.getByRole('button', {name: 'Pause background'}).click();
-    await page.waitForFunction(() => document.querySelector('.site-background video').paused);
+    const stopped = await canvas.screenshot();
+    await page.waitForTimeout(250);
+    assert(stopped.equals(await canvas.screenshot()), 'Pause freezes the shader');
     await page.getByRole('button', {name: 'Play background'}).click();
-    await page.waitForFunction(() => !document.querySelector('.site-background video').paused);
+    await page.waitForTimeout(250);
+    assert(!stopped.equals(await canvas.screenshot()), 'Resume animates the shader');
     await page.getByRole('button', {name: 'Pause background'}).blur();
     await page.screenshot({path: '/tmp/tactura-background-desktop.png'});
     for (const path of ['/demo', '/privacy']) {
       await page.goto(url + path);
-      await page.locator('.site-background video').waitFor();
+      await page.locator('.site-background canvas').waitFor();
       assert(await page.locator('.brand-mark').first().getAttribute('src').then(src => src.includes('tactura-icon-lime.png')));
     }
     await page.goto(url);
@@ -41,11 +46,11 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
     reduced.on('request', request => { if (/tactura-background\.(webm|mp4)/.test(request.url())) mediaRequests.push(request.url()); });
     await reduced.goto(url);
     await reduced.waitForTimeout(300);
-    assert.equal(await reduced.locator('.site-background video').count(), 0);
+    assert.equal(await reduced.locator('.site-background canvas').count(), 0);
     assert.equal(await reduced.locator('.background-toggle').count(), 0);
     assert((await reduced.locator('.site-background').evaluate(el => getComputedStyle(el).backgroundImage)).includes('tactura-background.webp'));
     assert.deepEqual(mediaRequests, []);
     assert.deepEqual(errors, []);
-    console.log('PASS icons, video playback, pause/resume, shared pages, mobile layout and reduced-motion static fallback without video requests');
+    console.log('PASS icons, live shader, pause/resume, shared pages, mobile layout and reduced-motion static fallback without video requests');
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });

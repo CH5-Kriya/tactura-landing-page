@@ -19,7 +19,7 @@ export default function Demo() {
       <p className="demo-lede">Bring an image, explore its relief, and find the depth that feels right.</p>
       <p className="demo-requirements">Requires WebGPU with FP16 support. First use downloads about 75 MB of model and processing files. Your photo stays on this device.</p>
       <PhotoDemo />
-      <Link className="text-link" href="/#download">Discover the full iPhone and iPad app ↗</Link>
+      <Link className="text-link" href="/#download">Discover the full iPhone and iPad app</Link>
     </section>
     <SiteFooter />
   </main>;

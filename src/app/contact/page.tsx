@@ -13,7 +13,7 @@ export default function ContactPage() {
           <Logo />
         </Link>
         <Link className="back-link" href="/">
-          ← Back to Tactura
+          Back to Tactura
         </Link>
       </header>
       <article className="contact-page">
@@ -37,7 +37,6 @@ export default function ContactPage() {
               <strong>contact@tactura.app</strong>
               <p>For support, privacy questions, and general enquiries.</p>
             </span>
-            <span className="contact-arrow">↗</span>
           </a>
           <div className="contact-option">
             <span className="contact-icon">

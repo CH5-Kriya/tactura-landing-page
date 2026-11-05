@@ -12,7 +12,7 @@ export default function PrivacyPage() {
           <Logo />
         </Link>
         <Link className="back-link" href="/">
-          ← Back to Tactura
+          Back to Tactura
         </Link>
       </header>
       <article className="legal-page">

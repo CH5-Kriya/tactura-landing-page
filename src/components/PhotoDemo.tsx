@@ -90,7 +90,7 @@ export default function PhotoDemo() {
         <p id="demo-file-help">JPEG or PNG · up to 5 MB. Images fit within 1000 × 1000 px.</p>
         {file && <p className="demo-filename">{file.name}</p>}
       </div>
-      <button type="button" className="button button-primary" disabled={!file || busy} onClick={convert}>Create my relief <span aria-hidden="true">↗</span></button>
+      <button type="button" className="button button-primary" disabled={!file || busy} onClick={convert}>Create my relief</button>
       {busy && <button type="button" className="button button-secondary" onClick={() => { stop(); setStatus("Conversion cancelled. Your photo stays selected."); }}>Cancel</button>}
     </div>
     <div className="demo-status" role="status" aria-live="polite" aria-atomic="true">{status}</div>

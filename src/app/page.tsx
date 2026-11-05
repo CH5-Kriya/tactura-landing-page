@@ -1,5 +1,4 @@
 import {
-  ArrowDown,
   Camera,
   Cpu,
   Download,
@@ -96,7 +95,7 @@ export default function Home() {
               images can become.
             </p>
             <a className="text-link" href="#how-it-works">
-              Explore the workflow <ArrowDown size={15} />
+              Explore the workflow
             </a>
           </div>
         </div>
@@ -216,12 +215,12 @@ export default function Home() {
           <a className="apple-badge" href="https://testflight.apple.com/join/ZC24AgVg">
             <div>
               <small>Join the beta on</small>
-              <strong>TestFlight ↗</strong>
+              <strong>TestFlight</strong>
             </div>
           </a>
           <span>
             Have a project in mind?{" "}
-            <a href="mailto:contact@tactura.app">Say hello ↗</a>
+            <a href="mailto:contact@tactura.app">Say hello</a>
           </span>
         </div>
       </section>
