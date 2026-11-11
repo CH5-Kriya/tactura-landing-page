@@ -15,14 +15,14 @@ export type DemoMesh = {
 };
 const DemoCanvas = dynamic(() => import("./DemoCanvas"), {
   ssr: false,
-  loading: () => <p className="relief-status" role="status">Opening your relief…</p>,
+  loading: () => <p className="relief-status" role="status">Loading the 3D preview…</p>,
 });
 class PreviewBoundary extends Component<{ children: React.ReactNode }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
   render() {
     return this.state.failed
-      ? <p className="relief-status" role="alert">3D preview could not start. Try a supported browser or another photo.</p>
+      ? <p className="relief-status" role="alert">The 3D preview did not open. Try another browser.</p>
       : this.props.children;
   }
 }
@@ -55,11 +55,11 @@ export default function PhotoDemo() {
     if (!["image/jpeg", "image/png"].includes(next.type) || next.size === 0 || next.size > 5 * 1024 * 1024) {
       setError("Choose a JPEG or PNG up to 5 MB."); setStatus("Choose another photo."); return;
     }
-    setFile(next); setStatus("Your photo is ready to convert."); setDepth(.72);
+    setFile(next); setStatus("Select Create relief to continue."); setDepth(.72);
   }
   function convert() {
     if (!file || busy) return;
-    setError(null); setBusy(true); setStatus("Starting local conversion…");
+    setError(null); setBusy(true); setStatus("Starting the demo…");
     let active: Worker;
     const fail = (message: string) => {
       stop(); setError(message); setStatus("Conversion stopped. You can try again.");
@@ -77,21 +77,21 @@ export default function PhotoDemo() {
           stop();
         } else if (data.type === "error") fail(data.message);
       };
-      active.onerror = () => fail("The conversion worker could not start. Check your connection and try again in a supported browser.");
+      active.onerror = () => fail("The demo did not start. Check your internet connection and try again.");
       active.postMessage({ file });
-    } catch { fail("Local conversion is unavailable in this browser."); }
+    } catch { fail("This browser cannot run the demo. Try another browser."); }
   }
   return <div className="photo-demo">
     <div className="demo-toolbar">
       <div>
-        <label htmlFor="demo-photo" className="demo-file-label">Upload your photo</label>
+        <label htmlFor="demo-photo" className="demo-file-label">Choose a photo</label>
         <input id="demo-photo" type="file" accept="image/jpeg,image/png" aria-describedby="demo-file-help"
           onChange={event => { choose(event.target.files?.[0]); }} />
-        <p id="demo-file-help">JPEG or PNG · up to 5 MB. Images fit within 1000 × 1000 px.</p>
+        <p id="demo-file-help">Choose a JPEG or PNG up to 5 MB. The demo fits the image within 1000 × 1000 pixels.</p>
         {file && <p className="demo-filename">{file.name}</p>}
       </div>
-      <button type="button" className="button button-primary" disabled={!file || busy} onClick={convert}>Create my relief</button>
-      {busy && <button type="button" className="button button-secondary" onClick={() => { stop(); setStatus("Conversion cancelled. Your photo stays selected."); }}>Cancel</button>}
+      <button type="button" className="button button-primary" disabled={!file || busy} onClick={convert}>Create relief</button>
+      {busy && <button type="button" className="button button-secondary" onClick={() => { stop(); setStatus("You stopped the demo. You can use the same photo again."); }}>Cancel</button>}
     </div>
     <div className="demo-status" role="status" aria-live="polite" aria-atomic="true">{status}</div>
     {error && <p className="demo-error" role="alert">{error}</p>}
@@ -100,15 +100,15 @@ export default function PhotoDemo() {
         <div className="demo-source">
           <span className="relief-label">01 / YOUR PHOTO</span>
           {source ? <Image src={source} alt="Your photo prepared for relief conversion" fill unoptimized sizes="(max-width: 760px) 100vw, 550px" />
-            : <p className="demo-placeholder">Your photo starts here.</p>}
+            : <p className="demo-placeholder">Choose a photo to see it here.</p>}
         </div>
-        <figcaption>Only processed in your browser. Your photo is never sent to a server.</figcaption>
+        <figcaption>The demo uses your photo in this browser. It does not send it to a server.</figcaption>
       </figure>
       <figure>
         <div className="relief-viewer demo-viewer">
           <span className="relief-label">02 / YOUR 2.5D RELIEF</span>
           {mesh ? <PreviewBoundary key={source}><DemoCanvas mesh={mesh} depth={depth} /></PreviewBoundary>
-            : <p className="demo-placeholder">{busy ? "Finding a new dimension…" : "A little depth changes everything."}</p>}
+            : <p className="demo-placeholder">{busy ? "Creating your relief…" : "Create a relief to see it here."}</p>}
         </div>
         <figcaption>Drag to rotate. Scroll or pinch to zoom.</figcaption>
       </figure>
@@ -117,8 +117,8 @@ export default function PhotoDemo() {
       <label htmlFor="demo-depth">Depth <output htmlFor="demo-depth">{Math.round(depth * 100)}%</output></label>
       <input id="demo-depth" type="range" min="0" max="100" step="1" value={Math.round(depth * 100)} disabled={!mesh}
         onChange={event => setDepth(Number(event.target.value) / 100)} aria-describedby="demo-depth-help" />
-      <p id="demo-depth-help">Slide to bring the surface forward.</p>
+      <p id="demo-depth-help">Move the slider to change the height of the relief.</p>
     </div>
-    <p className="demo-note">Preview only. For full refinement and export, use Tactura on iPhone and iPad.</p>
+    <p className="demo-note">The demo only shows a preview. Use the iPhone or iPad app to export your relief.</p>
   </div>;
 }

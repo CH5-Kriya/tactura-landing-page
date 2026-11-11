@@ -8,7 +8,7 @@ const ReliefCanvas = dynamic(() => import("./ReliefCanvas"), {
   ssr: false,
   loading: () => (
     <p className="relief-status" role="status">
-      Loading your next dimension…
+      Loading the 3D preview…
     </p>
   ),
 });
@@ -39,7 +39,7 @@ class PreviewBoundary extends Component<
   }
   render() {
     return this.state.failed ? (
-      <PreviewFallback message="3D preview is unavailable. You can still explore Tactura below." />
+      <PreviewFallback message="The 3D preview did not load. The photo shows the printed relief." />
     ) : (
       this.props.children
     );
@@ -81,17 +81,13 @@ export function ReliefPreview({ src }: { src: string }) {
     >
       <div className="relief-heading">
         <div>
-          <div className="section-kicker">MADE WITH TACTURA</div>
+          <div className="section-kicker">Example made with Tactura</div>
           <h2 id="relief-title">
-            One image.
-            <br />
-            <em>A new dimension.</em>
+            From artwork to<br />a 3D print
           </h2>
         </div>
         <p>
-          A relief you can explore.
-          <br />
-          Drag to turn. Scroll or pinch to get closer.
+          Drag the preview to rotate it. Scroll or pinch to zoom.
         </p>
       </div>
       <div className="relief-stages">
@@ -103,11 +99,11 @@ export function ReliefPreview({ src }: { src: string }) {
               fill
               sizes="(max-width: 1000px) 100vw, 390px"
             />
-            <span className="relief-label">01 / THE ORIGINAL IMAGE</span>
+            <span className="relief-label">01 / Original artwork</span>
           </div>
           <figcaption className="relief-caption">
-            <span>THE STARTING POINT</span>
-            <span>2D ARTWORK</span>
+            <span>Source</span>
+            <span>Image</span>
           </figcaption>
         </figure>
         <figure>
@@ -122,7 +118,7 @@ export function ReliefPreview({ src }: { src: string }) {
                 setFocused(false);
             }}
           >
-            <span className="relief-label">02 / THE DIGITAL RELIEF</span>
+            <span className="relief-label">02 / 3D preview</span>
             <PreviewBoundary key={src}>
               {visible ? (
                 <ReliefCanvas
@@ -130,13 +126,13 @@ export function ReliefPreview({ src }: { src: string }) {
                   autoRotate={inView && !hovered && !focused && !reducedMotion}
                 />
               ) : (
-                <p className="relief-status">Explore the relief in 3D</p>
+                <p className="relief-status">Scroll to load the 3D preview.</p>
               )}
             </PreviewBoundary>
           </div>
           <figcaption className="relief-caption">
-            <span>VASE BHG</span>
-            <span>STL · INTERACTIVE PREVIEW</span>
+            <span>Vase relief</span>
+            <span>STL file</span>
           </figcaption>
         </figure>
         <figure>
@@ -147,11 +143,11 @@ export function ReliefPreview({ src }: { src: string }) {
               fill
               sizes="(max-width: 1000px) 100vw, 390px"
             />
-            <span className="relief-label">03 / MADE TANGIBLE</span>
+            <span className="relief-label">03 / 3D print</span>
           </div>
           <figcaption className="relief-caption">
-            <span>FROM SCREEN TO SURFACE</span>
-            <span>THE REAL PRINT</span>
+            <span>Printed relief</span>
+            <span>Photo</span>
           </figcaption>
         </figure>
       </div>

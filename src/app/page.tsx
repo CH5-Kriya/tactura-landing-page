@@ -1,11 +1,10 @@
 import {
   Camera,
-  Cpu,
   Download,
-  Layers3,
   LockKeyhole,
   Sparkles,
 } from "lucide-react";
+import { appStoreUrl } from "@/lib/app-store";
 import { GlowButton } from "@/components/GlowButton";
 import { BlurText } from "@/components/BlurText";
 import { ReliefPreview } from "@/components/ReliefPreview";
@@ -17,20 +16,20 @@ const steps = [
   {
     icon: Camera,
     number: "01",
-    title: "Bring your image",
-    body: "Capture a sketch, import a photo, or start with the artwork already in your library.",
+    title: "Add an image",
+    body: "Scan your artwork or pick a photo from your library.",
   },
   {
     icon: Sparkles,
     number: "02",
-    title: "Let depth emerge",
-    body: "Tactura reads the image on your iPhone or iPad and turns visual cues into a sculptable depth map.",
+    title: "Create a relief",
+    body: "Crop your image and create a relief. Adjust the depth in the 3D preview.",
   },
   {
     icon: Download,
     number: "03",
-    title: "Make it tangible",
-    body: "Refine the result, preview the relief, then export a printable model when it feels right.",
+    title: "Export a file",
+    body: "Export an STL file for 3D printing or save a PNG height map.",
   },
 ];
 
@@ -40,73 +39,53 @@ export default function Home() {
       <SiteHeader />
       <section className="hero page-grid">
         <div className="hero-copy">
-          <div className="eyebrow">
-            <span className="eyebrow-dot" /> BUILT FOR IPHONE + IPAD · MADE FOR MAKERS
-          </div>
-          <BlurText text="Turn flat ideas into physical form." />
+          <BlurText text="Turn photos into 3D reliefs." />
           <p className="hero-sub">
-            Tactura transforms 2D artwork into 2.5D reliefs, entirely on your
-            iPhone or iPad. From first image to printable mesh, your work stays with you.
+            Create a raised design from a photo or artwork. Adjust its depth on
+            your iPhone or iPad, then export it for 3D printing.
           </p>
           <div className="hero-actions">
             <GlowButton href="/demo">Try your own photo</GlowButton>
             <GlowButton href="#privacy" secondary>
-              Read our privacy promise
+              How your photos stay private
             </GlowButton>
           </div>
           <div className="hero-proof">
-            <span>◉</span>
-            <span>On-device processing</span>
-            <i />
+            <span>Photos stay on your device</span>
+            <i aria-hidden="true" />
             <span>No account required</span>
           </div>
         </div>
         <div className="hero-art">
           <ProjectScreenshot />
-          <div className="floating-note note-two">
-            <span className="pulse" /> iPhone + iPad
-          </div>
         </div>
-      </section>
-      <section className="marquee">
-        <span>ONE IMAGE, A NEW DIMENSION</span>
-        <span>✦</span>
-        <span>PRIVATE BY DESIGN</span>
-        <span>✦</span>
-        <span>READY TO PRINT</span>
-        <span>✦</span>
       </section>
       <ReliefPreview src="/vase-bhg.stl.gz" />
       <section className="intro section">
-        <div className="section-kicker">THE IDEA</div>
+        <div className="section-kicker">What you can use</div>
         <div className="intro-layout">
           <h2>
-            Give your images
-            <br />
-            <span>a little more room</span> to exist.
+            Start with a photo,<br />a sketch, or a painting.
           </h2>
           <div>
             <p className="lead">
-              A photograph is a surface. A relief is a memory you can hold.
+              Choose the part of the image you want to turn into a relief.
             </p>
             <p>
-              Tactura is a focused conversion studio for iPhone and iPad — designed to help
-              illustrators, makers, and curious people discover what their flat
-              images can become.
+              Crop the image before you create the relief.
             </p>
             <a className="text-link" href="#how-it-works">
-              Explore the workflow
+              See how to make a relief
             </a>
           </div>
         </div>
       </section>
       <section id="how-it-works" className="steps section">
-        <div className="section-kicker">A SIMPLE PIPELINE</div>
+        <div className="section-kicker">In the app</div>
         <div className="section-heading">
-          <h2>From source to surface.</h2>
+          <h2>How to make a relief</h2>
           <p>
-            Every stage stays close at hand. No upload queues, no black boxes in
-            the cloud.
+            Use Tactura on your iPhone or iPad. The app saves your work so you can return to it later.
           </p>
         </div>
         <div className="step-grid">
@@ -128,15 +107,12 @@ export default function Home() {
           <div className="icon-tile">
             <LockKeyhole size={20} />
           </div>
-          <div className="section-kicker">PRIVATE BY DESIGN</div>
+          <div className="section-kicker">App privacy</div>
           <h2>
-            Your images do not
-            <br />
-            <em>go anywhere.</em>
+            Your photos stay<br /><em>on your device.</em>
           </h2>
           <p>
-            Tactura has no servers, no accounts, and no networking code. The AI
-            model and the complete relief pipeline run locally on your iPhone or iPad.
+            The iPhone and iPad app creates reliefs on your device. You do not need an account.
           </p>
           <GlowButton href="/privacy" secondary>
             Read the Privacy Policy
@@ -147,8 +123,7 @@ export default function Home() {
             <span>01</span>
             <strong>Nothing uploaded</strong>
             <p>
-              Your source image and project files remain in the app’s private
-              storage.
+              The app keeps your images and projects in its private storage.
             </p>
           </div>
           <div>
@@ -162,41 +137,34 @@ export default function Home() {
           <div>
             <span>03</span>
             <strong>Works offline</strong>
-            <p>Airplane Mode does not change the core workflow.</p>
+            <p>You can create and export reliefs in Airplane Mode.</p>
           </div>
         </div>
       </section>
       <section id="faq" className="faq section">
-        <div className="section-kicker">GOOD TO KNOW</div>
         <div className="faq-layout">
           <h2>
-            Questions,
-            <br />
-            <span>answered.</span>
+            Common questions
           </h2>
           <div className="faq-list">
             <details open>
               <summary>What can I export?</summary>
               <p>
-                Tactura is built around printable reliefs. Export your finished
-                model as a standard STL, or export a height image as a PNG for
-                other workflows.
+                Export an STL file for 3D printing. You can also export a PNG height map.
+                A height map records how high each part of the relief is.
               </p>
             </details>
             <details>
-              <summary>Does Tactura need an internet connection?</summary>
+              <summary>Does the app work offline?</summary>
               <p>
-                No. The app is designed to work offline, including image
-                preparation, depth estimation, refinement, mesh generation, and
-                export.
+                Yes. The iPhone and iPad app can create and export reliefs offline.
+                The web demo needs a connection to load.
               </p>
             </details>
             <details>
               <summary>Who is Tactura for?</summary>
               <p>
-                Anyone curious about giving artwork a physical presence —
-                illustrators, 3D-printing enthusiasts, designers, and makers of
-                all kinds.
+                Use Tactura if you want to turn a photo or artwork into a relief for 3D printing.
               </p>
             </details>
           </div>
@@ -204,23 +172,21 @@ export default function Home() {
       </section>
       <section id="download" className="download-cta">
         <div>
-          <div className="section-kicker">JOIN THE TESTFLIGHT BETA</div>
+          <div className="section-kicker">For iPhone and iPad</div>
           <h2>
-            Make the jump
-            <br />
-            <em>from screen to surface.</em>
+            Get Tactura
           </h2>
         </div>
         <div className="download-action">
-          <a className="apple-badge" href="https://testflight.apple.com/join/ZC24AgVg">
+          <a className="apple-badge" href={appStoreUrl}>
             <div>
-              <small>Join the beta on</small>
-              <strong>TestFlight</strong>
+              <small>Download on the</small>
+              <strong>App Store</strong>
             </div>
           </a>
           <span>
-            Have a project in mind?{" "}
-            <a href="mailto:contact@tactura.app">Say hello</a>
+            Need help?{" "}
+            <a href="mailto:contact@tactura.app">Email us</a>
           </span>
         </div>
       </section>

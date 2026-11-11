@@ -26,7 +26,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
   await page.goto(base+'/');
   await page.getByRole('link',{name:'Try your own photo'}).click();
   assert(!requests.some(url=>url.includes('/demo-assets/')), 'No model or worker download before conversion');
-  const input=page.locator('#demo-photo'),button=page.getByRole('button',{name:'Create my relief'});
+  const input=page.locator('#demo-photo'),button=page.getByRole('button',{name:'Create relief'});
   await input.setInputFiles({name:'invalid.txt',mimeType:'text/plain',buffer:Buffer.from('no')});
   await page.getByRole('alert').filter({hasText:'JPEG or PNG'}).waitFor();assert(await button.isDisabled());
   await input.setInputFiles({name:'large.png',mimeType:'image/png',buffer:Buffer.alloc(5*1024*1024+1)});
@@ -55,7 +55,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
    }
   }
   await input.setInputFiles(root+'hero.png');await button.click();await page.getByRole('button',{name:'Cancel',exact:true}).click();
-  await page.locator('.demo-status').filter({hasText:'cancelled'}).waitFor();assert(await button.isEnabled());
+  await page.locator('.demo-status').filter({hasText:'stopped the demo'}).waitFor();assert(await button.isEnabled());
   await input.setInputFiles(root+'cats.jpg');await button.click();await page.locator('.demo-status').filter({hasText:'Ready ·'}).waitFor({timeout:180000});
   await page.setViewportSize({width:390,height:844});await page.waitForTimeout(700);
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth));

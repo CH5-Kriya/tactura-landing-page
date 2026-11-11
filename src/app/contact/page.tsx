@@ -18,14 +18,13 @@ export default function ContactPage() {
       </header>
       <article className="contact-page">
         <div className="eyebrow">
-          <span className="eyebrow-dot" /> WE WOULD LOVE TO HEAR FROM YOU
+          <span className="eyebrow-dot" /> Tactura support
         </div>
         <h1>
           Contact <em>us.</em>
         </h1>
         <p className="contact-lede">
-          Questions about Tactura, feedback on the workflow, or an idea for what
-          we should build next? Send us a note and we’ll get back to you.
+          Email us for help with Tactura, privacy questions, or feedback.
         </p>
         <div className="contact-options">
           <a className="contact-option" href="mailto:contact@tactura.app">
@@ -35,7 +34,7 @@ export default function ContactPage() {
             <span>
               <small>EMAIL</small>
               <strong>contact@tactura.app</strong>
-              <p>For support, privacy questions, and general enquiries.</p>
+              <p>Send an email to the Tactura team.</p>
             </span>
           </a>
           <div className="contact-option">
@@ -45,7 +44,7 @@ export default function ContactPage() {
             <span>
               <small>RESPONSE TIME</small>
               <strong>Within 30 days</strong>
-              <p>We aim to reply to privacy enquiries within 30 days.</p>
+              <p>We aim to answer privacy questions within 30 days.</p>
             </span>
           </div>
         </div>

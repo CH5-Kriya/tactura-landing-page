@@ -47,7 +47,7 @@ self.onmessage = async ({data: {file}}) => {
     const preview = await canvas.convertToBlob({type: 'image/png'});
     self.postMessage({type: 'prepared', preview, rows, cols});
     timings.prepareMs = performance.now() - start;
-    status('Loading depth model · first use downloads about 50 MB…');
+    status('Loading the depth model…');
     const load = performance.now();
     estimator = await pipeline('depth-estimation', 'onnx-community/depth-anything-v2-small', {
       device: 'webgpu', dtype: 'fp16', revision: '34f40a4',
@@ -68,7 +68,7 @@ self.onmessage = async ({data: {file}}) => {
     const depth = normalize(bicubic(predicted_depth.data, h, w, rows, cols));
     timings.depthMs = performance.now() - infer;
     await estimator.dispose(); estimator = null;
-    status('Sculpting your relief…');
+    status('Creating your relief…');
     ready ??= createRelief().then(m => {
       if (m._relief_opencv_selftest() !== 0) throw new Error('Relief engine could not start.');
       return m;
@@ -88,7 +88,7 @@ self.onmessage = async ({data: {file}}) => {
     const height = module.HEAPF32.slice(z / 4, z / 4 + n);
     if (!height.every(v => Number.isFinite(v) && v >= 0 && v <= 1)) throw new Error('Invalid relief output.');
     timings.reliefMs = performance.now() - sculpt;
-    status('Preparing 2.5D preview…');
+    status('Loading the 3D preview…');
     const meshStart = performance.now(), mesh = previewMesh(height, rows, cols);
     timings.meshMs = performance.now() - meshStart;
     timings.totalMs = performance.now() - start;

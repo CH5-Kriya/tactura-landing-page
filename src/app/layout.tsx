@@ -3,9 +3,9 @@ import "./globals.css";
 import { SiteBackground } from "@/components/SiteBackground";
 
 export const metadata: Metadata = {
-  title: "Tactura — Turn 2D images into 2.5D reliefs",
+  title: "Tactura | Turn photos into 3D reliefs",
   description:
-    "A private, on-device workflow for turning artwork into printable 2.5D relief models on iPhone and iPad.",
+    "Turn photos and artwork into reliefs for 3D printing on iPhone and iPad. Your photos stay on your device.",
   icons: {
     icon: { url: "/tactura-favicon.png", sizes: "48x48", type: "image/png" },
     apple: { url: "/tactura-apple-icon.png", sizes: "180x180", type: "image/png" },
