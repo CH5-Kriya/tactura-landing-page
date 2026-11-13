@@ -88,6 +88,20 @@ export default function Home() {
             Use Tactura on your iPhone or iPad. The app saves your work so you can return to it later.
           </p>
         </div>
+        <figure className="app-demo-video">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/BRqeI5NVX6s"
+            title="Tactura demo: Turn 2D art into 3D-printable reliefs"
+            loading="lazy"
+            allow="encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+          <figcaption>
+            <a href="https://www.youtube.com/watch?v=BRqeI5NVX6s">
+              Watch the demo on YouTube
+            </a>
+          </figcaption>
+        </figure>
         <div className="step-grid">
           {steps.map(({ icon: Icon, number, title, body }) => (
             <article className="step-card" key={number}>
