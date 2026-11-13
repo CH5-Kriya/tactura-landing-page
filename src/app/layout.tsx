@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SiteBackground } from "@/components/SiteBackground";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Tactura | Turn photos into 3D reliefs",
@@ -17,7 +18,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body><SiteBackground />{children}</body>
+      <body>
+        <SiteBackground />
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
