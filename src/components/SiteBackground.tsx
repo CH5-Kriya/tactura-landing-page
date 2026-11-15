@@ -6,9 +6,7 @@ import type { createHalftone } from "@/lib/lumen/halftone-renderer";
 export function SiteBackground() {
   const canvas = useRef<HTMLCanvasElement>(null);
   const renderer = useRef<ReturnType<typeof createHalftone> | null>(null);
-  const pausedRef = useRef(false);
   const [motionAllowed, setMotionAllowed] = useState(false);
-  const [paused, setPaused] = useState(false);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
@@ -20,16 +18,11 @@ export function SiteBackground() {
   }, []);
 
   useEffect(() => {
-    pausedRef.current = paused;
-    renderer.current?.setPlaying(!paused && !document.hidden);
-  }, [paused]);
-
-  useEffect(() => {
     const element = canvas.current;
     if (!motionAllowed || failed || !element) return;
     let cancelled = false;
     let observer: ResizeObserver | undefined;
-    const sync = () => renderer.current?.setPlaying(!pausedRef.current && !document.hidden);
+    const sync = () => renderer.current?.setPlaying(!document.hidden);
     void import("@/lib/lumen/halftone-renderer").then(({ createHalftone }) => {
       if (cancelled) return;
       renderer.current = createHalftone(element, () => {
@@ -49,13 +42,9 @@ export function SiteBackground() {
     };
   }, [motionAllowed, failed]);
 
-  return <>
+  return (
     <div className="site-background" aria-hidden="true">
       {motionAllowed && !failed && <canvas ref={canvas} />}
     </div>
-    {motionAllowed && !failed && <button type="button" className="background-toggle"
-      onClick={() => setPaused(value => !value)} aria-pressed={paused}>
-      {paused ? "Play background" : "Pause background"}
-    </button>}
-  </>;
+  );
 }

@@ -1,0 +1,18 @@
+# Tactura
+
+> Tactura turns photos and artwork into 3D-printable reliefs on iPhone and iPad.
+
+The app processes photos on the device and exports STL files and PNG height maps.
+The browser demo lets you preview a 2.5D relief from your own photo and adjust its depth with one slider.
+It fits the image within 1000 × 1000 pixels. File export is available in the app.
+
+## Product and demo
+
+- [Tactura homepage](https://www.tactura.app/): Features and a real 3D print example.
+- [Browser demo](https://www.tactura.app/demo): Try a relief preview with your own photo.
+- [App Store](https://apps.apple.com/app/id6802478241): Download Tactura for iPhone and iPad.
+
+## Support
+
+- [Privacy policy](https://www.tactura.app/privacy): How Tactura handles photos and data.
+- [Contact](https://www.tactura.app/contact): Get help with Tactura.
