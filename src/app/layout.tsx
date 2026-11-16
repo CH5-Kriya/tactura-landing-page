@@ -18,6 +18,22 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag() { window.dataLayer.push(arguments); }
+gtag("js", new Date());
+
+{
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = "https://www.googletagmanager.com/gtm.js?id=GTM-WZ72L3KK";
+  document.head.appendChild(script);
+}`,
+          }}
+        />
+      </head>
       <body>
         <SiteBackground />
         {children}
