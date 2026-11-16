@@ -2,7 +2,7 @@ import preset from "../../../public/tactura-background-preset.json";
 import { fragmentSource, vertexSource } from "./halftone-shaders";
 
 const lightColors = {
-  A: "#b3c396", B: "#c5d3ab", C: "#a8b39f", D: "#d1d6ca", BG: "#f5f5ef",
+  A: "#91a76e", B: "#b6c693", C: "#9aa68a", D: "#c6cebf", BG: "#f5f5ef",
 };
 const colorUniforms = ["u_c1", "u_c2", "u_c3", "u_c4", "u_bg"];
 

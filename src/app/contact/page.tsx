@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { Mail, MessageCircle } from "lucide-react";
-import { Logo } from "@/components/Logo";
+import { LegalHeader } from "@/components/LegalHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = { title: "Contact Us — Tactura" };
@@ -8,14 +7,7 @@ export const metadata = { title: "Contact Us — Tactura" };
 export default function ContactPage() {
   return (
     <main>
-      <header className="legal-header">
-        <Link href="/">
-          <Logo />
-        </Link>
-        <Link className="back-link" href="/">
-          Back to Tactura
-        </Link>
-      </header>
+      <LegalHeader />
       <article className="contact-page">
         <div className="eyebrow">
           <span className="eyebrow-dot" /> Tactura support

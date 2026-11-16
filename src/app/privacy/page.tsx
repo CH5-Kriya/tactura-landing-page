@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Logo } from "@/components/Logo";
+import { LegalHeader } from "@/components/LegalHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = { title: "Privacy Policy — Tactura" };
@@ -7,14 +7,7 @@ export const metadata = { title: "Privacy Policy — Tactura" };
 export default function PrivacyPage() {
   return (
     <main>
-      <header className="legal-header">
-        <Link href="/">
-          <Logo />
-        </Link>
-        <Link className="back-link" href="/">
-          Back to Tactura
-        </Link>
-      </header>
+      <LegalHeader />
       <article className="legal-page">
         <div className="legal-intro">
           <div className="eyebrow">
