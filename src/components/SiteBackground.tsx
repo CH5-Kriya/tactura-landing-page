@@ -21,22 +21,35 @@ export function SiteBackground() {
     const element = canvas.current;
     if (!motionAllowed || failed || !element) return;
     let cancelled = false;
+    let stopMotion: number | undefined;
+    let motionFinished = false;
     let observer: ResizeObserver | undefined;
-    const sync = () => renderer.current?.setPlaying(!document.hidden);
+    let themeObserver: MutationObserver | undefined;
+    const root = document.documentElement;
+    const currentTheme = () => root.dataset.theme === "light" ? "light" : "dark";
+    const sync = () => renderer.current?.setPlaying(!motionFinished && !document.hidden);
     void import("@/lib/lumen/halftone-renderer").then(({ createHalftone }) => {
       if (cancelled) return;
       renderer.current = createHalftone(element, () => {
         if (!cancelled) setFailed(true);
-      });
+      }, currentTheme());
+      themeObserver = new MutationObserver(() => renderer.current?.setTheme(currentTheme()));
+      themeObserver.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
       observer = new ResizeObserver(() => renderer.current?.resize());
       observer.observe(element);
       document.addEventListener("visibilitychange", sync);
       sync();
+      stopMotion = window.setTimeout(() => {
+        motionFinished = true;
+        sync();
+      }, 4000);
     }).catch(() => { if (!cancelled) setFailed(true); });
     return () => {
       cancelled = true;
+      window.clearTimeout(stopMotion);
       document.removeEventListener("visibilitychange", sync);
       observer?.disconnect();
+      themeObserver?.disconnect();
       renderer.current?.dispose();
       renderer.current = null;
     };

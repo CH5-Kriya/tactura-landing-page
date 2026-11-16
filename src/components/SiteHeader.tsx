@@ -9,13 +9,14 @@ export function SiteHeader() {
       <Link href="/">
         <Logo />
       </Link>
+      <GlowButton className="mobile-store" href={appStoreUrl}>Get Tactura on the App Store</GlowButton>
       <nav aria-label="Main navigation">
         <Link href="/#how-it-works">How it works</Link>
         <Link href="/#privacy">Privacy</Link>
         <Link href="/#faq">FAQ</Link>
         <Link href="/demo">Try demo</Link>
       </nav>
-      <GlowButton href={appStoreUrl}>Get Tactura on the App Store</GlowButton>
+      <GlowButton className="desktop-store" href={appStoreUrl}>Get Tactura on the App Store</GlowButton>
     </header>
   );
 }

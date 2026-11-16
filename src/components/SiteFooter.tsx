@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
+import { ThemeSelect } from "./ThemeSelect";
 
 export function SiteFooter() {
   return (
@@ -15,7 +16,10 @@ export function SiteFooter() {
         <a href="https://www.instagram.com/tactura.app/">Instagram</a>
         <a href="https://www.tiktok.com/@tactura.app">TikTok</a>
       </nav>
-      <span className="copyright">© 2026 Tactura</span>
+      <div className="footer-settings">
+        <ThemeSelect />
+        <span className="copyright">© 2026 Tactura</span>
+      </div>
     </footer>
   );
 }

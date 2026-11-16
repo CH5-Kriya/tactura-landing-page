@@ -1,7 +1,16 @@
 import preset from "../../../public/tactura-background-preset.json";
 import { fragmentSource, vertexSource } from "./halftone-shaders";
 
-export function createHalftone(canvas: HTMLCanvasElement, onFailure: () => void) {
+const lightColors = {
+  A: "#b3c396", B: "#c5d3ab", C: "#a8b39f", D: "#d1d6ca", BG: "#f5f5ef",
+};
+const colorUniforms = ["u_c1", "u_c2", "u_c3", "u_c4", "u_bg"];
+
+export function createHalftone(
+  canvas: HTMLCanvasElement,
+  onFailure: () => void,
+  initialTheme: "light" | "dark" = "dark",
+) {
   const gl = canvas.getContext("webgl2", {
     alpha: false, antialias: false, depth: false, stencil: false,
     powerPreference: "low-power",
@@ -13,6 +22,7 @@ export function createHalftone(canvas: HTMLCanvasElement, onFailure: () => void)
   let buffer: WebGLBuffer | null = null;
   let frame = 0, playing = false, disposed = false;
   let elapsed = 0, lastTick = 0, lastDraw = 0;
+  let theme = initialTheme;
   const interval = 1000 / preset.renderer.maxFps;
 
   function dispose() {
@@ -58,15 +68,28 @@ export function createHalftone(canvas: HTMLCanvasElement, onFailure: () => void)
     gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
     for (const [key, value] of Object.entries({...preset.parameters, seed: preset.seed, travel: preset.travel}))
       gl.uniform1f(gl.getUniformLocation(program, `u_${key}`), value);
-    for (const [i, hex] of Object.values(preset.colors).entries()) {
-      const rgb = [1, 3, 5].map(offset => parseInt(hex.slice(offset, offset + 2), 16) / 255);
-      gl.uniform3fv(gl.getUniformLocation(program, ["u_c1", "u_c2", "u_c3", "u_c4", "u_bg"][i]), rgb);
-    }
+    applyTheme();
     canvas.addEventListener("webglcontextlost", lost);
   } catch (error) { dispose(); throw error; }
 
   const phase = gl.getUniformLocation(program, "u_phase");
   const resolution = gl.getUniformLocation(program, "u_res");
+  function applyTheme() {
+    const light = theme === "light";
+    const colors = light ? lightColors : preset.colors;
+    for (const [index, hex] of Object.values(colors).entries()) {
+      const rgb = [1, 3, 5].map(offset => parseInt(hex.slice(offset, offset + 2), 16) / 255);
+      gl!.uniform3fv(gl!.getUniformLocation(program!, colorUniforms[index]), rgb);
+    }
+    gl!.uniform1f(gl!.getUniformLocation(program!, "u_glow"), light ? 0 : preset.parameters.glow);
+    gl!.uniform1f(gl!.getUniformLocation(program!, "u_vig"), light ? 0 : preset.parameters.vig);
+  }
+  function setTheme(next: "light" | "dark") {
+    if (next === theme || disposed || gl!.isContextLost()) return;
+    theme = next;
+    applyTheme();
+    draw();
+  }
   function draw() {
     gl!.uniform1f(phase, (elapsed / (preset.loopSeconds * 1000)) % 1);
     gl!.drawArrays(gl!.TRIANGLES, 0, 3);
@@ -102,5 +125,5 @@ export function createHalftone(canvas: HTMLCanvasElement, onFailure: () => void)
     }
   }
   resize();
-  return { setPlaying, resize, dispose };
+  return { setPlaying, setTheme, resize, dispose };
 }

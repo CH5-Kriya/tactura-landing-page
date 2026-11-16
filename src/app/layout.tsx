@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SiteBackground } from "@/components/SiteBackground";
+import { initializeTheme } from "@/lib/theme";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
@@ -17,8 +18,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="color-scheme" content="dark light" />
+        <script dangerouslySetInnerHTML={{ __html: initializeTheme }} />
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];

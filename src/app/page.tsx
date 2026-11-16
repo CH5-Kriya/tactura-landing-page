@@ -61,25 +61,6 @@ export default function Home() {
         </div>
       </section>
       <ReliefPreview src="/vase-bhg.stl.gz" />
-      <section className="intro section">
-        <div className="section-kicker">What you can use</div>
-        <div className="intro-layout">
-          <h2>
-            Start with a photo,<br />a sketch, or a painting.
-          </h2>
-          <div>
-            <p className="lead">
-              Choose the part of the image you want to turn into a relief.
-            </p>
-            <p>
-              Crop the image before you create the relief.
-            </p>
-            <a className="text-link" href="#how-it-works">
-              See how to make a relief
-            </a>
-          </div>
-        </div>
-      </section>
       <section id="how-it-works" className="steps section">
         <div className="section-kicker">In the app</div>
         <div className="section-heading">
