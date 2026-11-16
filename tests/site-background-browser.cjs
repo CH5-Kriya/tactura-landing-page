@@ -44,7 +44,7 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
     await reduced.goto(url);
     await reduced.waitForTimeout(300);
     assert.equal(await reduced.locator('.site-background canvas').count(), 0);
-    assert((await reduced.locator('.site-background').evaluate(el => getComputedStyle(el, '::before').backgroundImage)).includes('tactura-background.webp'));
+    assert((await reduced.locator('.site-background-art').evaluate(el => getComputedStyle(el, '::before').backgroundImage)).includes('tactura-background.webp'));
     assert.deepEqual(mediaRequests, []);
     assert.deepEqual(errors, []);
     console.log('PASS icons, live shader without a toggle, shared pages, mobile layout and reduced-motion static fallback without video requests');

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { appStoreUrl } from "@/lib/app-store";
 import { Logo } from "./Logo";
-import { ThemeSelect } from "./ThemeSelect";
+import { ThemeToggle } from "./ThemeToggle";
 
 function MainNavigation({ className }: { className: string }) {
   return (
@@ -22,7 +22,7 @@ export function SiteHeader() {
       </Link>
       <MainNavigation className="desktop-nav" />
       <div className="header-actions">
-        <ThemeSelect />
+        <ThemeToggle />
         <Link href={appStoreUrl} className="button button-primary store-button" aria-label="Get Tactura on the App Store">
           Get Tactura<span className="store-label-detail">&nbsp;on the App Store</span>
         </Link>

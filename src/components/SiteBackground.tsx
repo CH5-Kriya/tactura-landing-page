@@ -68,7 +68,9 @@ export function SiteBackground() {
 
   return (
     <div className="site-background" aria-hidden="true">
-      {motionAllowed && !failed && <canvas ref={canvas} />}
+      <div className="site-background-art">
+        {motionAllowed && !failed && <canvas ref={canvas} />}
+      </div>
     </div>
   );
 }
