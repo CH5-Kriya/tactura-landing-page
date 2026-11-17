@@ -1,6 +1,6 @@
 /*! LUMEN Halftone shader, Copyright (c) 2026 Leonxlnx, MIT.
  * Source: https://github.com/Leonxlnx/lumenshaders (js/shaders.js).
- * Shared helpers, Halftone and grading retained. Light mode adds a grid offset.
+ * Only shared helpers, Halftone and grading retained; equations unchanged.
  * License: /licenses/lumen.txt. */
 export const vertexSource = "#version 300 es\nlayout(location=0) in vec2 a_pos;\nvoid main(){ gl_Position = vec4(a_pos, 0.0, 1.0); }\n";
 
@@ -27,7 +27,6 @@ uniform float u_light, u_gloss, u_lightAngle, u_irid, u_glow;
 
 uniform float u_grain, u_cell, u_lines, u_ca, u_vig, u_soft;
 uniform float u_travel;
-uniform float u_gridDrift; // Light-mode movement, in halftone cells.
 
 /* synth: procedural style combinator (legacy share codes) */
 uniform int   u_synth;     // 0 = single mode, 1 = blend two modes
@@ -138,9 +137,7 @@ vec2 toP(vec2 uv){
 vec3 sceneHalftone(vec2 uv){
   float asp = u_res.x/u_res.y;
   vec2 so = SO(), lt = LT();
-  float phase = TAU * u_phase;
-  vec2 drift = u_gridDrift * vec2(sin(phase), 0.62 * (1.0 - cos(phase)));
-  vec2 guv = uv*vec2(asp,1.0)*u_cell*0.55 + drift;
+  vec2 guv = uv*vec2(asp,1.0)*u_cell*0.55;
   vec2 gp = floor(guv);
   vec2 gf = fract(guv)-0.5;
   vec2 cuv = (gp+0.5)/(u_cell*0.55)/vec2(asp,1.0);

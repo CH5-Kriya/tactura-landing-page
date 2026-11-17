@@ -2,8 +2,9 @@ import preset from "../../../public/tactura-background-preset.json";
 import { fragmentSource, vertexSource } from "./halftone-shaders";
 
 const lightColors = {
-  A: "#91a76e", B: "#b6c693", C: "#9aa68a", D: "#c6cebf", BG: "#f5f5ef",
+  A: "#ffffff", B: "#ffffff", C: "#2c3918", D: "#2c3918", BG: "#dffe86",
 };
+const lightGrade = { hue: 23, sat: 0.55, exposure: 1.02 };
 const colorUniforms = ["u_c1", "u_c2", "u_c3", "u_c4", "u_bg"];
 
 export function createHalftone(
@@ -75,22 +76,24 @@ export function createHalftone(
   const phase = gl.getUniformLocation(program, "u_phase");
   const resolution = gl.getUniformLocation(program, "u_res");
   function applyTheme() {
-    const light = theme === "light";
-    const colors = light ? lightColors : preset.colors;
+    const colors = theme === "light" ? lightColors : preset.colors;
+    const grade = theme === "light" ? lightGrade : preset.parameters;
     for (const [index, hex] of Object.values(colors).entries()) {
       const rgb = [1, 3, 5].map(offset => parseInt(hex.slice(offset, offset + 2), 16) / 255);
       gl!.uniform3fv(gl!.getUniformLocation(program!, colorUniforms[index]), rgb);
     }
-    gl!.uniform1f(gl!.getUniformLocation(program!, "u_gridDrift"), light ? 2.2 : 0);
-    gl!.uniform1f(gl!.getUniformLocation(program!, "u_glow"), light ? 0 : preset.parameters.glow);
-    gl!.uniform1f(gl!.getUniformLocation(program!, "u_vig"), light ? 0 : preset.parameters.vig);
+    gl!.uniform1f(gl!.getUniformLocation(program!, "u_hue"), grade.hue);
+    gl!.uniform1f(gl!.getUniformLocation(program!, "u_sat"), grade.sat);
+    gl!.uniform1f(gl!.getUniformLocation(program!, "u_exposure"), grade.exposure);
   }
+
   function setTheme(next: "light" | "dark") {
     if (next === theme || disposed || gl!.isContextLost()) return;
     theme = next;
     applyTheme();
     draw();
   }
+
   function draw() {
     gl!.uniform1f(phase, (elapsed / (preset.loopSeconds * 1000)) % 1);
     gl!.drawArrays(gl!.TRIANGLES, 0, 3);

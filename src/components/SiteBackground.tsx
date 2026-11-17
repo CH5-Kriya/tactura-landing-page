@@ -21,43 +21,25 @@ export function SiteBackground() {
     const element = canvas.current;
     if (!motionAllowed || failed || !element) return;
     let cancelled = false;
-    let stopMotion: number | undefined;
-    let motionUntil = 0;
     let observer: ResizeObserver | undefined;
     let themeObserver: MutationObserver | undefined;
     const root = document.documentElement;
-    const currentTheme = (): "light" | "dark" => root.dataset.theme === "light" ? "light" : "dark";
-    const sync = () => renderer.current?.setPlaying(
-      performance.now() < motionUntil && !document.hidden,
-    );
-    const animate = () => {
-      window.clearTimeout(stopMotion);
-      motionUntil = performance.now() + 4000;
-      sync();
-      stopMotion = window.setTimeout(() => renderer.current?.setPlaying(false), 4000);
-    };
+    const currentTheme = () => root.dataset.theme === "light" ? "light" : "dark";
+    const sync = () => renderer.current?.setPlaying(!document.hidden);
     void import("@/lib/lumen/halftone-renderer").then(({ createHalftone }) => {
       if (cancelled) return;
-      let theme = currentTheme();
       renderer.current = createHalftone(element, () => {
         if (!cancelled) setFailed(true);
-      }, theme);
-      themeObserver = new MutationObserver(() => {
-        const nextTheme = currentTheme();
-        if (nextTheme === theme) return;
-        theme = nextTheme;
-        renderer.current?.setTheme(theme);
-        animate();
-      });
+      }, currentTheme());
+      themeObserver = new MutationObserver(() => renderer.current?.setTheme(currentTheme()));
       themeObserver.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
       observer = new ResizeObserver(() => renderer.current?.resize());
       observer.observe(element);
       document.addEventListener("visibilitychange", sync);
-      animate();
+      sync();
     }).catch(() => { if (!cancelled) setFailed(true); });
     return () => {
       cancelled = true;
-      window.clearTimeout(stopMotion);
       document.removeEventListener("visibilitychange", sync);
       observer?.disconnect();
       themeObserver?.disconnect();

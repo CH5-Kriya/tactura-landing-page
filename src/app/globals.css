@@ -34,9 +34,9 @@
 }
 :root[data-theme="light"] {
   color-scheme:light;
-  --bg:#f5f5ef;
+  --bg:#fffde6;
   --ink:#161816;
-  --muted:#4e554a;
+  --muted:#454d3d;
   --dim:#555d50;
   --line:#c9cec2;
   --panel:#fff;
@@ -53,9 +53,9 @@
   --error-ink:#842f22;
   --error-border:#a85746;
   --error-surface:#fff0ec;
-  --background-art-filter:invert(1) grayscale(.75);
-  --background-overlay:linear-gradient(90deg,#f5f5efe0,#f5f5efbf 58%,#f5f5efa6);
-  --background-overlay-narrow:#f5f5efc7;
+  --background-art-filter:invert(1) grayscale(.9) sepia(.25);
+  --background-overlay:linear-gradient(90deg,#fffde6d9,#fffde6bd 58%,#fffde6b3);
+  --background-overlay-narrow:#fffde6c9;
   --shadow:#20281f36;
 }
 
