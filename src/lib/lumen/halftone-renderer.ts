@@ -81,6 +81,7 @@ export function createHalftone(
       const rgb = [1, 3, 5].map(offset => parseInt(hex.slice(offset, offset + 2), 16) / 255);
       gl!.uniform3fv(gl!.getUniformLocation(program!, colorUniforms[index]), rgb);
     }
+    gl!.uniform1f(gl!.getUniformLocation(program!, "u_gridDrift"), light ? 2.2 : 0);
     gl!.uniform1f(gl!.getUniformLocation(program!, "u_glow"), light ? 0 : preset.parameters.glow);
     gl!.uniform1f(gl!.getUniformLocation(program!, "u_vig"), light ? 0 : preset.parameters.vig);
   }

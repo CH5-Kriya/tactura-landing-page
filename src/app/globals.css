@@ -155,13 +155,3 @@ body { isolation:isolate; }
 .theme-toggle:hover { background:var(--panel-2); }
 .theme-sun,:root[data-theme="light"] .theme-moon { display:none; }
 :root[data-theme="light"] .theme-sun { display:block; }
-
-@media(prefers-reduced-motion:no-preference) {
-  :root[data-theme="light"] .site-background-art {
-    animation:light-halftone 4s ease-out both;
-  }
-}
-@keyframes light-halftone {
-  from { transform:scale(1.12) translate(-2%, 2%); }
-  to { transform:scale(1.05); }
-}

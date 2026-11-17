@@ -52,6 +52,7 @@ test("preset uniforms, GPU resolution cap, pause/resume and disposal", () => {
   const renderer = createHalftone(h.canvas, () => { throw new Error("Unexpected context loss"); });
   expect(h.floats.get("u_travel")).toBe(0.15);
   expect(h.floats.get("u_seed")).toBe(9015);
+  expect(h.floats.get("u_gridDrift")).toBe(0);
   expect([h.canvas.width, h.canvas.height]).toEqual([1280, 720]);
   expect(h.frames.size).toBe(0);
   renderer.setPlaying(true);
@@ -73,6 +74,18 @@ test("preset uniforms, GPU resolution cap, pause/resume and disposal", () => {
   expect(h.frames.size).toBe(0);
   expect(h.freed()).toBe(4);
   expect(h.lost()).toBe(1);
+});
+
+test("light theme moves the halftone grid without changing the original travel", () => {
+  const h = setup();
+  const renderer = createHalftone(h.canvas, () => {}, "light");
+  expect(h.floats.get("u_gridDrift")).toBeGreaterThan(0);
+  expect(h.floats.get("u_travel")).toBe(0.15);
+  renderer.setTheme("dark");
+  expect(h.floats.get("u_gridDrift")).toBe(0);
+  renderer.setTheme("light");
+  expect(h.floats.get("u_gridDrift")).toBeGreaterThan(0);
+  renderer.dispose();
 });
 
 test("context loss stops the loop and reports fallback", () => {
