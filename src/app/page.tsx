@@ -11,6 +11,7 @@ import { ReliefPreview } from "@/components/ReliefPreview";
 import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { UseCases } from "@/components/UseCases";
 
 const steps = [
   {
@@ -83,6 +84,7 @@ export default function Home() {
             </a>
           </figcaption>
         </figure>
+        <UseCases />
         <div className="step-grid">
           {steps.map(({ icon: Icon, number, title, body }) => (
             <article className="step-card" key={number}>

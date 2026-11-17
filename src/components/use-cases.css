@@ -1,0 +1,59 @@
+.use-cases {
+  --use-case-glow: 215, 255, 115;
+  margin: 56px 0 40px;
+}
+
+:root[data-theme="light"] .use-cases {
+  --use-case-glow: 59, 85, 32;
+}
+
+.use-cases > h3 {
+  margin-bottom: 20px;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -.05em;
+}
+
+.use-cases .magic-bento__card {
+  border: 1px solid var(--line);
+}
+
+.use-cases .magic-bento__image {
+  object-position: center 45%;
+}
+
+.use-cases .magic-bento__scrim {
+  background: linear-gradient(to top, #10120fec 0%, #10120fa8 29%, transparent 72%);
+}
+
+.use-cases .magic-bento__content {
+  padding: 20px;
+}
+
+.use-cases .magic-bento__title {
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.use-cases .magic-bento__description {
+  max-width: 38ch;
+  font-size: 14px;
+}
+
+.use-case-icon {
+  color: var(--accent-ink);
+}
+
+.use-cases [data-image] .use-case-icon {
+  color: var(--preview-accent);
+}
+
+.use-cases [data-image] .magic-bento__description {
+  color: var(--preview-ink);
+}
+
+@media (max-width: 720px) {
+  .use-cases .magic-bento__cell:first-child {
+    grid-row: span 1 !important;
+  }
+}
