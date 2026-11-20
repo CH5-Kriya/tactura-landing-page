@@ -85,7 +85,6 @@ export default function Home() {
             </a>
           </figcaption>
         </figure>
-        <UseCases />
         <div className="step-grid">
           {steps.map(({ icon: Icon, number, title, body }) => (
             <article className="step-card" key={number}>
@@ -99,6 +98,7 @@ export default function Home() {
             </article>
           ))}
         </div>
+        <UseCases />
       </section>
       <Gallery />
       <section id="privacy" className="privacy-band">

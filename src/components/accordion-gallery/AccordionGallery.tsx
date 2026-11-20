@@ -24,6 +24,7 @@ export interface AccordionGalleryProps {
   gap?: number;
   radius?: number;
   expandRatio?: number;
+  fitImageWidth?: boolean;
   orientation?: 'horizontal' | 'vertical';
   duration?: number;
   ease?: string;
@@ -46,6 +47,7 @@ const AccordionGallery = ({
   gap = 10,
   radius = 16,
   expandRatio = 0.52,
+  fitImageWidth = false,
   orientation = 'horizontal',
   duration = 0.6,
   ease = 'power3.out',
@@ -68,6 +70,7 @@ const AccordionGallery = ({
 
   const vertical = orientation === 'vertical';
   const count = items.length;
+  const [imageRatios, setImageRatios] = useState<Record<string, number>>({});
   const [prefersReduced, setPrefersReduced] = useState(false);
   const [active, setActive] = useState(Math.min(Math.max(defaultIndex, 0), count - 1));
 
@@ -84,9 +87,26 @@ const AccordionGallery = ({
       const panels = panelRefs.current;
       if (!panels.length) return;
 
-      const r = Math.min(Math.max(expandRatio, 0.2), 0.9);
-      const grow = count > 1 ? (r * (count - 1)) / (1 - r) : 1;
-      const mediaSize = mediaSizeRef.current;
+      let ratio = Math.min(Math.max(expandRatio, 0.2), 0.9);
+      let mediaSize = mediaSizeRef.current;
+      const bounds = rootRef.current?.getBoundingClientRect();
+      const image = mediaRefs.current[active]?.querySelector('img');
+      const imageRatio = image?.naturalHeight
+        ? image.naturalWidth / image.naturalHeight
+        : imageRatios[items[active]?.image];
+
+      if (fitImageWidth && !vertical && bounds && imageRatio) {
+        const usable = Math.max(1, bounds.width - gap * (count - 1));
+        const thumbnailWidth = Math.min(80, usable / Math.max(count, 1));
+        const maximumWidth = Math.max(1, usable - thumbnailWidth * (count - 1));
+        const minimumWidth = Math.min(160, maximumWidth);
+        const imageWidth = Math.min(maximumWidth, Math.max(minimumWidth, bounds.height * imageRatio));
+        ratio = imageWidth / usable;
+        mediaSize = imageWidth;
+        rootRef.current?.style.setProperty('--ag-media-size', `${imageWidth}px`);
+      }
+
+      const grow = count > 1 ? (ratio * (count - 1)) / Math.max(1 - ratio, 0.001) : 1;
 
       tlRef.current?.kill();
       const dur = animate && !prefersReduced ? duration : 0;
@@ -138,6 +158,10 @@ const AccordionGallery = ({
     [
       active,
       count,
+      items,
+      imageRatios,
+      fitImageWidth,
+      gap,
       expandRatio,
       duration,
       ease,
@@ -256,7 +280,21 @@ const AccordionGallery = ({
                   mediaRefs.current[i] = el;
                 }}
               >
-                <img src={item.image} alt={item.alt || item.label || ''} loading="lazy" decoding="async" draggable={false} />
+                <img
+                  src={item.image}
+                  alt={item.alt || item.label || ''}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  onLoad={(event) => {
+                    const image = event.currentTarget;
+                    if (!image.naturalWidth || !image.naturalHeight) return;
+                    const ratio = image.naturalWidth / image.naturalHeight;
+                    setImageRatios((previous) => previous[item.image] === ratio
+                      ? previous
+                      : { ...previous, [item.image]: ratio });
+                  }}
+                />
               </span>
               <span className="ag-panel__overlay" aria-hidden="true" />
             </span>

@@ -33,13 +33,14 @@ export function Gallery() {
               label: title,
               alt,
             }))}
-            defaultIndex={0}
+            defaultIndex={event.defaultIndex}
+            fitImageWidth
             height={480}
             radius={12}
             accentColor="var(--action-fill)"
             overlayColor="#0c0d0d"
             textColor="#f4f4f1"
-            grayscale={false}
+            grayscale
             tilt={0}
             parallax={0}
             duration={0.35}

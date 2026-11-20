@@ -7,6 +7,7 @@ export interface GalleryPhoto {
 export interface GalleryEvent {
   id: string;
   title: string;
+  defaultIndex: number;
   photos: GalleryPhoto[];
 }
 
@@ -14,6 +15,7 @@ export const galleryEvents: GalleryEvent[] = [
   {
     id: "user-testing",
     title: "User testing",
+    defaultIndex: 1,
     photos: [
       {
         image: "/gallery/user-testing-1.webp",
@@ -40,6 +42,7 @@ export const galleryEvents: GalleryEvent[] = [
   {
     id: "exhibition",
     title: "Exhibition",
+    defaultIndex: 0,
     photos: [
       {
         image: "/gallery/exhibition-1.webp",
