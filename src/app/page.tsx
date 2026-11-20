@@ -12,6 +12,7 @@ import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { UseCases } from "@/components/UseCases";
+import { Gallery } from "@/components/Gallery";
 
 const steps = [
   {
@@ -99,6 +100,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+      <Gallery />
       <section id="privacy" className="privacy-band">
         <div className="privacy-copy">
           <div className="icon-tile">
