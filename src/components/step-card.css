@@ -1,0 +1,22 @@
+.step-tilt {
+  min-width: 0;
+  align-items: stretch;
+  user-select: text;
+  -webkit-user-select: text;
+  --tc-rim-color: transparent;
+  --tc-rim-light: transparent;
+}
+
+.step-tilt .tilted-card__body {
+  max-height: none;
+}
+
+.step-tilt .tilted-card__front {
+  position: relative;
+  height: 100%;
+}
+
+.step-tilt .step-card {
+  border-radius: var(--tc-radius);
+  height: 100%;
+}

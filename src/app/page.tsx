@@ -13,6 +13,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { UseCases } from "@/components/UseCases";
 import { Gallery } from "@/components/Gallery";
+import { StepCard } from "@/components/StepCard";
 
 const steps = [
   {
@@ -87,15 +88,17 @@ export default function Home() {
         </figure>
         <div className="step-grid">
           {steps.map(({ icon: Icon, number, title, body }) => (
-            <article className="step-card" key={number}>
-              <div className="step-top">
-                <span>{number}</span>
-                <Icon size={19} strokeWidth={1.5} />
-              </div>
-              <h3>{title}</h3>
-              <p>{body}</p>
-              <div className="step-line" />
-            </article>
+            <StepCard key={number} caption={title}>
+              <article className="step-card">
+                <div className="step-top">
+                  <span>{number}</span>
+                  <Icon size={19} strokeWidth={1.5} />
+                </div>
+                <h3>{title}</h3>
+                <p>{body}</p>
+                <div className="step-line" />
+              </article>
+            </StepCard>
           ))}
         </div>
         <UseCases />
