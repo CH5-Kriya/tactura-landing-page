@@ -1,6 +1,5 @@
-.gallery { padding-top: 56px; }
 .gallery-heading { margin-top: 0; align-items: center; }
-.gallery-event + .gallery-event { margin-top: 44px; }
+.gallery-event + .gallery-event { margin-top: 48px; }
 .gallery-event > h3 { margin: 0 0 18px; font-size: 26px; line-height: 1.2; letter-spacing: -.04em; }
 .gallery-event { min-width: 0; }
 .gallery .ag-panel__media img { object-fit: contain; }

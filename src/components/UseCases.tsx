@@ -60,8 +60,8 @@ const colors = {
 
 export function UseCases() {
   return (
-    <section id="use-cases" className="use-cases" aria-labelledby="use-cases-title">
-      <h3 id="use-cases-title">Use cases</h3>
+    <section id="use-cases" className="use-cases section" aria-labelledby="use-cases-title">
+      <h2 id="use-cases-title">Use cases</h2>
       <MagicBento
         items={items}
         columns={4}

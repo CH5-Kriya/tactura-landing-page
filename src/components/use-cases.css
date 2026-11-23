@@ -1,17 +1,13 @@
 .use-cases {
   --use-case-glow: 215, 255, 115;
-  margin: 56px 0 40px;
 }
 
 :root[data-theme="light"] .use-cases {
   --use-case-glow: 59, 85, 32;
 }
 
-.use-cases > h3 {
-  margin-bottom: 20px;
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: 1.1;
-  letter-spacing: -.05em;
+.use-cases > h2 {
+  margin-bottom: var(--section-heading-gap);
 }
 
 .use-cases .magic-bento__card {

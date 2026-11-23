@@ -76,7 +76,7 @@ export function ReliefPreview({ src }: { src: string }) {
 
   return (
     <section
-      className="relief-showcase page-grid"
+      className="relief-showcase section"
       aria-labelledby="relief-title"
     >
       <div className="relief-heading">

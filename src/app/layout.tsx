@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import { SiteBackground } from "@/components/SiteBackground";
 import { initializeTheme } from "@/lib/theme";
 import { Analytics } from "@vercel/analytics/next";
+
+const blackout = localFont({
+  src: "./fonts/BlackoutMidnight.ttf",
+  variable: "--font-blackout",
+  weight: "400",
+  style: "normal",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Tactura | Turn photos into 3D reliefs",
@@ -18,7 +27,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={blackout.variable} suppressHydrationWarning>
       <head>
         <meta name="color-scheme" content="dark light" />
         <script dangerouslySetInnerHTML={{ __html: initializeTheme }} />

@@ -1,0 +1,48 @@
+.app-store-badge {
+  --badge-height: 44px;
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: calc(var(--badge-height) * 3);
+  height: var(--badge-height);
+  border-radius: calc(var(--badge-height) * 16 / 60);
+  background: #fff;
+  color: #000;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.2;
+  text-decoration: none;
+  vertical-align: middle;
+  transform-origin: center;
+}
+
+.app-store-badge > span {
+  position: absolute;
+  display: block;
+  margin: 0;
+  color: #000;
+  white-space: nowrap;
+}
+
+.app-store-badge__icon {
+  left: 10.833333%;
+  top: 14.739583%;
+  font-size: calc(var(--badge-height) * 0.6);
+  letter-spacing: -0.05em;
+}
+
+.app-store-badge__label {
+  left: 30.425347%;
+  top: 15.833333%;
+  font-size: calc(var(--badge-height) * 0.2);
+  letter-spacing: normal;
+}
+
+.app-store-badge__title {
+  left: 30.190972%;
+  top: 36.171875%;
+  font-size: calc(var(--badge-height) * 0.4);
+  letter-spacing: -0.05em;
+}
+
+.download-action .app-store-badge { --badge-height: 60px; }

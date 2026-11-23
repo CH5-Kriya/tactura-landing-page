@@ -4,7 +4,7 @@ import {
   LockKeyhole,
   Sparkles,
 } from "lucide-react";
-import { appStoreUrl } from "@/lib/app-store";
+import { AppStoreBadge } from "@/components/AppStoreBadge";
 import { GlowButton } from "@/components/GlowButton";
 import { BlurText } from "@/components/BlurText";
 import { ReliefPreview } from "@/components/ReliefPreview";
@@ -101,8 +101,8 @@ export default function Home() {
             </StepCard>
           ))}
         </div>
-        <UseCases />
       </section>
+      <UseCases />
       <Gallery />
       <section id="privacy" className="privacy-band">
         <div className="privacy-copy">
@@ -180,12 +180,7 @@ export default function Home() {
           </h2>
         </div>
         <div className="download-action">
-          <a className="apple-badge" href={appStoreUrl}>
-            <div>
-              <small>Download on the</small>
-              <strong>App Store</strong>
-            </div>
-          </a>
+          <AppStoreBadge />
           <span>
             Need help?{" "}
             <a href="mailto:contact@tactura.app">Email us</a>
