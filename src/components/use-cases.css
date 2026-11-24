@@ -27,13 +27,13 @@
 }
 
 .use-cases .magic-bento__title {
-  font-size: 19px;
+  font-size:22px;
   line-height: 1.2;
 }
 
 .use-cases .magic-bento__description {
   max-width: 38ch;
-  font-size: 14px;
+  font-size:17px;
 }
 
 .use-case-icon {

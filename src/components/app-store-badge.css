@@ -1,13 +1,15 @@
 .app-store-badge {
   --badge-height: 44px;
+  --badge-fill: #fff;
+  --badge-ink: #000;
   position: relative;
   display: inline-block;
   flex-shrink: 0;
   width: calc(var(--badge-height) * 3);
   height: var(--badge-height);
   border-radius: calc(var(--badge-height) * 16 / 60);
-  background: #fff;
-  color: #000;
+  background: var(--badge-fill);
+  color: var(--badge-ink);
   font-weight: 500;
   font-style: normal;
   line-height: 1.2;
@@ -20,7 +22,7 @@
   position: absolute;
   display: block;
   margin: 0;
-  color: #000;
+  color: var(--badge-ink);
   white-space: nowrap;
 }
 
@@ -46,3 +48,9 @@
 }
 
 .download-action .app-store-badge { --badge-height: 60px; }
+
+:root[data-theme="light"] .app-store-badge {
+  --badge-fill: #000;
+  --badge-ink: #fff;
+  box-shadow: inset 0 0 0 1px #ffffff40;
+}

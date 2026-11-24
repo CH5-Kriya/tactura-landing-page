@@ -82,7 +82,18 @@ export function SiteHeader() {
 
   return (
     <div className="site-header-slot">
+      <svg className="header-glass-filter" aria-hidden="true" focusable="false">
+        <defs>
+          <filter id="tactura-header-glass" x="0" y="0" width="100%" height="100%" filterUnits="objectBoundingBox">
+            <feTurbulence type="fractalNoise" baseFrequency="0.003 0.007" numOctaves="1" result="turbulence" />
+            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="200" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
+      </svg>
       <header ref={header} className="site-header" data-menu-open={open} data-floating={scrolled || open}>
+        <div className="header-glass-bend" aria-hidden="true" />
+        <div className="header-glass-face" aria-hidden="true" />
+        <div className="header-glass-edge" aria-hidden="true" />
         <Link href="/" className="header-brand" aria-label="Tactura home" onClick={() => setOpen(false)}>
           <Logo />
         </Link>

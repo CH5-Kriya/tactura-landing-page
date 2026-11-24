@@ -1,6 +1,6 @@
 .gallery-heading { margin-top: 0; align-items: center; }
 .gallery-event + .gallery-event { margin-top: 48px; }
-.gallery-event > h3 { margin: 0 0 18px; font-size: 26px; line-height: 1.2; letter-spacing: -.04em; }
+.gallery-event > h3 { margin: 0 0 18px; font-size:29px; line-height: 1.2; letter-spacing: -.04em; }
 .gallery-event { min-width: 0; }
 .gallery .ag-panel__media img { object-fit: contain; }
 .gallery .ag-panel { background: var(--panel); }
@@ -10,7 +10,7 @@
 .gallery .ag-panel__description {
   display: block;
   margin-top: 6px;
-  font-size: 14px;
+  font-size:17px;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -21,3 +21,5 @@
   .gallery .ag-panel__media { width: 100%; height: var(--ag-media-size); }
   .gallery .ag-panel__label { left: 16px; right: 16px; bottom: 16px; }
 }
+
+.gallery .ag-panel__text { font-size:clamp(19px,calc(1.4vw + 3px),25.4px); }

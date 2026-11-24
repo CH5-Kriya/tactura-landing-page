@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import type { createHalftone } from "@/lib/lumen/halftone-renderer";
 
-export function SiteBackground() {
+export function SiteBackground({ contained = false }: { contained?: boolean }) {
+  const pathname = usePathname();
+  const visible = contained || pathname !== "/";
   const canvas = useRef<HTMLCanvasElement>(null);
   const renderer = useRef<ReturnType<typeof createHalftone> | null>(null);
   const [motionAllowed, setMotionAllowed] = useState(false);
@@ -19,7 +22,7 @@ export function SiteBackground() {
 
   useEffect(() => {
     const element = canvas.current;
-    if (!motionAllowed || failed || !element) return;
+    if (!visible || !motionAllowed || failed || !element) return;
     let cancelled = false;
     let observer: ResizeObserver | undefined;
     let themeObserver: MutationObserver | undefined;
@@ -46,10 +49,12 @@ export function SiteBackground() {
       renderer.current?.dispose();
       renderer.current = null;
     };
-  }, [motionAllowed, failed]);
+  }, [motionAllowed, failed, visible]);
+
+  if (!visible) return null;
 
   return (
-    <div className="site-background" aria-hidden="true">
+    <div className="site-background" data-contained={contained || undefined} aria-hidden="true">
       <div className="site-background-art">
         {motionAllowed && !failed && <canvas ref={canvas} />}
       </div>

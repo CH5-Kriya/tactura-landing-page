@@ -7,7 +7,7 @@ export function ProjectScreenshot() {
     src: "/tactura-hero-ipad.png",
     width: 2732,
     height: 2048,
-    sizes: "(max-width: 1224px) 46vw, 545px",
+    sizes: "(max-width: 884px) calc(100vw - 64px), 820px",
     alt,
   });
 
@@ -15,7 +15,7 @@ export function ProjectScreenshot() {
     src: "/tactura-hero-iphone.png",
     width: 1179,
     height: 2556,
-    sizes: "(max-width: 320px) 82vw, 260px",
+    sizes: "(max-width: 405px) 74vw, 300px",
     alt,
     loading: "eager",
     fetchPriority: "high",
