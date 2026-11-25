@@ -6,7 +6,7 @@ import type { createHalftone } from "@/lib/lumen/halftone-renderer";
 
 export function SiteBackground({ contained = false }: { contained?: boolean }) {
   const pathname = usePathname();
-  const visible = contained || pathname !== "/";
+  const visible = contained || (pathname !== "/" && pathname !== "/feedback");
   const canvas = useRef<HTMLCanvasElement>(null);
   const renderer = useRef<ReturnType<typeof createHalftone> | null>(null);
   const [motionAllowed, setMotionAllowed] = useState(false);
